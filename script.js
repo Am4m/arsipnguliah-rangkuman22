@@ -19,22 +19,29 @@ semester_option.querySelectorAll("p").forEach(function(e, i){
 document.addEventListener("click", function(event, i) {
     dropdowns.forEach(function(e) {
         option = e.getElementsByClassName("option")[0]
-        if (!e.contains(event.target)) {
-            if (option.style.display == "block") {
-                option.style.display = "none";
-            }
-        } else {
-            if (option.style.display == "block") {
-                option.style.display = "none";
+        if (option.getElementsByTagName("p")[0] != null) {
+            if (!e.contains(event.target)) {
+                if (option.style.display == "block") {
+                    option.style.display = "none";
+                    e.getElementsByTagName("i")[0].classList.remove("active")
+                }
             } else {
-                option.style.display = "block";
-            }   
+                if (option.style.display == "block") {
+                    option.style.display = "none";
+                    e.getElementsByTagName("i")[0].classList.remove("active")
+                } else {
+                    option.style.display = "block";
+                    e.getElementsByTagName("i")[0].classList.add("active")
+                    submit = document.getElementsByClassName("submit")[0]
+                    submit.style.display = "none"
+                }   
+            }
         }
     })
 })
 
 function generateMatkul(semester) {
-    var matkul, mata_kuliah, matkul_element;
+    var matkul, mata_kuliah, matkul_element, submit;
     if (semester == 1) mata_kuliah = ["PAI", "Kalkulus", "DDAI", "Alpro Dasar", "Bahasa Inggris", "Pancasila", "DMS"];
     if (semester == 2) mata_kuliah = ["Aljabar Linear", "Statistika", "Struktur Data", "Alpro Lanjut", "Bahasa Indonesia", "Jaringan Komputer"];
     matkul = document.getElementsByClassName("matkul")[0].getElementsByClassName("option")[0]
@@ -52,6 +59,10 @@ function generateMatkul(semester) {
                 matkul_selected.style.display = "block";
             }
             matkul_selected = this;
+            submit = document.getElementsByClassName("submit")[0]
+            submit.style.display = "block"
+            submit.setAttribute("href", "/Semester/" + semester + "/" + matkul_selected.textContent)
+
         });
     });
     
