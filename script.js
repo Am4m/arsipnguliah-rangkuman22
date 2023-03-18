@@ -12,11 +12,12 @@ semester_option.querySelectorAll("p").forEach(function(e, i){
         document.getElementsByClassName("matkul")[0].firstChild.textContent = "Mata Kuliah:"
         semester_selected = this;
         matkul_selected = null
-        
+        submit = document.getElementsByClassName("submit")[0]
+        submit.style.display = "none"
         generateMatkul(i + 1);
     });
 });
-document.addEventListener("click", function(event, i) {
+document.addEventListener("click", function(event) {
     dropdowns.forEach(function(e) {
         option = e.getElementsByClassName("option")[0]
         if (option.getElementsByTagName("p")[0] != null) {
@@ -32,8 +33,6 @@ document.addEventListener("click", function(event, i) {
                 } else {
                     option.style.display = "block";
                     e.getElementsByTagName("i")[0].classList.add("active")
-                    submit = document.getElementsByClassName("submit")[0]
-                    submit.style.display = "none"
                 }   
             }
         }
@@ -61,8 +60,6 @@ function generateMatkul(semester) {
             matkul_selected = this;
             submit = document.getElementsByClassName("submit")[0]
             submit.style.display = "block"
-            submit.setAttribute("href", "/Semester/" + semester + "/" + matkul_selected.textContent)
-
         });
     });
     

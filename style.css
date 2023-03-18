@@ -90,6 +90,7 @@ nav div {
     top: 100%;
     width: 100%;
     cursor: pointer;
+    z-index: 1;
 }
 
 .option > *:hover {
